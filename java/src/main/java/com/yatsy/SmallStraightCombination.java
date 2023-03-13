@@ -1,3 +1,5 @@
+package com.yatsy;
+
 public class SmallStraightCombination extends Combination {
 
     public SmallStraightCombination() {

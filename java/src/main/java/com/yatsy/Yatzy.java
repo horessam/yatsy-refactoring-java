@@ -1,3 +1,5 @@
+package com.yatsy;
+
 public class Yatzy {
 
     private final Dice dice;

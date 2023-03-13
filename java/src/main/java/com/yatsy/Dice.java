@@ -1,3 +1,5 @@
+package com.yatsy;
+
 public class Dice {
     private final int[] diceValues;
 

@@ -1,3 +1,5 @@
+package com.yatsy;
+
 public class LargeStraightCombination extends Combination {
 
     public LargeStraightCombination() {

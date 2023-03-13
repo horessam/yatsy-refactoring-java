@@ -1,3 +1,4 @@
+package com.yatsy;
 
 public class FullHouseCombination extends Combination {
 

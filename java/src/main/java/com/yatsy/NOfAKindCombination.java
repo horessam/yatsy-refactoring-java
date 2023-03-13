@@ -1,3 +1,5 @@
+package com.yatsy;
+
 public class NOfAKindCombination extends Combination {
     private final int number;
 

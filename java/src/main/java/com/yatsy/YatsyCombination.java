@@ -1,3 +1,5 @@
+package com.yatsy;
+
 public class YatsyCombination extends Combination {
 
     public YatsyCombination() {

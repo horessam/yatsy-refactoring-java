@@ -1,3 +1,5 @@
+package com.yatsy;
+
 import java.util.Arrays;
 
 public class NumberCombination extends Combination {
