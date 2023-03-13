@@ -6,16 +6,6 @@ public class Yatzy {
         dice = new int[]{die1, die2, die3, die4, die5};
     }
 
-    public static int chance(int die1, int die2, int die3, int die4, int die5) {
-        int total = 0;
-        total += die1;
-        total += die2;
-        total += die3;
-        total += die4;
-        total += die5;
-        return total;
-    }
-
     public static int yatzy(int... dice) {
         int[] counts = new int[6];
         for (int die : dice)
@@ -24,34 +14,6 @@ public class Yatzy {
             if (counts[i] == 5)
                 return 50;
         return 0;
-    }
-
-    public int ones() {
-       return count(1);
-    }
-
-    public int twos() {
-        return count(2);
-    }
-
-    public int threes() {
-        return count(3);
-    }
-
-    public int fours() {
-        return count(4);
-    }
-
-    public int fives() {
-        return count(5);
-    }
-
-    public int sixes() {
-        int sum = 0;
-        for (int at = 0; at < dice.length; at++)
-            if (dice[at] == 6)
-                sum = sum + 6;
-        return sum;
     }
 
     public static int pair(int die1, int die2, int die3, int die4, int die5) {
@@ -181,6 +143,46 @@ public class Yatzy {
             return _2_at * 2 + _3_at * 3;
         else
             return 0;
+    }
+
+    public int chance() {
+        return sum(dice);
+    }
+
+    public int ones() {
+        return count(1);
+    }
+
+    public int twos() {
+        return count(2);
+    }
+
+    public int threes() {
+        return count(3);
+    }
+
+    public int fours() {
+        return count(4);
+    }
+
+    public int fives() {
+        return count(5);
+    }
+
+    public int sixes() {
+        int sum = 0;
+        for (int at = 0; at < dice.length; at++)
+            if (dice[at] == 6)
+                sum = sum + 6;
+        return sum;
+    }
+
+    private int sum(int[] dice) {
+        int total = 0;
+        for (int die : dice) {
+            total += die;
+        }
+        return total;
     }
 
     private int count(int value) {
