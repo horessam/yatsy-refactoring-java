@@ -6,78 +6,6 @@ public class Yatzy {
         dice = new int[]{die1, die2, die3, die4, die5};
     }
 
-    public static int yatzy(int... dice) {
-        int[] counts = new int[6];
-        for (int die : dice)
-            counts[die - 1]++;
-        for (int i = 0; i != 6; i++)
-            if (counts[i] == 5)
-                return 50;
-        return 0;
-    }
-
-    public static int pair(int die1, int die2, int die3, int die4, int die5) {
-        int[] counts = new int[6];
-        counts[die1 - 1]++;
-        counts[die2 - 1]++;
-        counts[die3 - 1]++;
-        counts[die4 - 1]++;
-        counts[die5 - 1]++;
-        int at;
-        for (at = 0; at != 6; at++)
-            if (counts[6 - at - 1] >= 2)
-                return (6 - at) * 2;
-        return 0;
-    }
-
-    public static int twoPair(int die1, int die2, int die3, int die4, int die5) {
-        int[] counts = new int[6];
-        counts[die1 - 1]++;
-        counts[die2 - 1]++;
-        counts[die3 - 1]++;
-        counts[die4 - 1]++;
-        counts[die5 - 1]++;
-        int n = 0;
-        int score = 0;
-        for (int i = 0; i < 6; i += 1)
-            if (counts[6 - i - 1] >= 2) {
-                n++;
-                score += (6 - i);
-            }
-        if (n == 2)
-            return score * 2;
-        else
-            return 0;
-    }
-
-    public static int threeOfAKind(int die1, int die2, int die3, int die4, int die5) {
-        int[] t;
-        t = new int[6];
-        t[die1 - 1]++;
-        t[die2 - 1]++;
-        t[die3 - 1]++;
-        t[die4 - 1]++;
-        t[die5 - 1]++;
-        for (int i = 0; i < 6; i++)
-            if (t[i] >= 3)
-                return (i + 1) * 3;
-        return 0;
-    }
-
-    public static int fourOfAKind(int die1, int die2, int die3, int die4, int die5) {
-        int[] tallies;
-        tallies = new int[6];
-        tallies[die1 - 1]++;
-        tallies[die2 - 1]++;
-        tallies[die3 - 1]++;
-        tallies[die4 - 1]++;
-        tallies[die5 - 1]++;
-        for (int i = 0; i < 6; i++)
-            if (tallies[i] >= 4)
-                return (i + 1) * 4;
-        return 0;
-    }
-
     public static int smallStraight(int die1, int die2, int die3, int die4, int die5) {
         int[] tallies;
         tallies = new int[6];
@@ -145,8 +73,35 @@ public class Yatzy {
             return 0;
     }
 
+    public int pair() {
+        return nOfAKind(2) * 2;
+    }
+
+    public int twoPair() {
+        int[] counts = getCounts();
+        int pairs = 0;
+        int score = 0;
+        for (int i = 0; i < counts.length; i++) {
+            if (counts[i] >= 2) {
+                pairs++;
+                score += (i + 1) * 2;
+            }
+        }
+        return pairs == 2 ? score : 0;
+    }
+
     public int chance() {
         return sum(dice);
+    }
+
+    public int yatzy() {
+        int[] counts = getCounts();
+        for (int count : counts) {
+            if (count == 5) {
+                return 50;
+            }
+        }
+        return 0;
     }
 
     public int ones() {
@@ -170,11 +125,15 @@ public class Yatzy {
     }
 
     public int sixes() {
-        int sum = 0;
-        for (int at = 0; at < dice.length; at++)
-            if (dice[at] == 6)
-                sum = sum + 6;
-        return sum;
+        return count(6);
+    }
+
+    public int threeOfAKind() {
+        return nOfAKind(3) * 3;
+    }
+
+    public int fourOfAKind() {
+        return nOfAKind(4) * 4;
     }
 
     private int sum(int[] dice) {
@@ -185,6 +144,14 @@ public class Yatzy {
         return total;
     }
 
+    private int[] getCounts() {
+        int[] counts = new int[6];
+        for (int die : dice) {
+            counts[die - 1]++;
+        }
+        return counts;
+    }
+
     private int count(int value) {
         int total = 0;
         for (int die : dice) {
@@ -193,6 +160,16 @@ public class Yatzy {
             }
         }
         return total;
+    }
+
+    private int nOfAKind(int n) {
+        int[] counts = getCounts();
+        for (int i = counts.length - 1; i > 0; i--) {
+            if (counts[i] >= n) {
+                return i + 1;
+            }
+        }
+        return 0;
     }
 }
 
