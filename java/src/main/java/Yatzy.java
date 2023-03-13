@@ -6,39 +6,9 @@ public class Yatzy {
         dice = new int[]{die1, die2, die3, die4, die5};
     }
 
-    public static int smallStraight(int die1, int die2, int die3, int die4, int die5) {
-        int[] tallies;
-        tallies = new int[6];
-        tallies[die1 - 1] += 1;
-        tallies[die2 - 1] += 1;
-        tallies[die3 - 1] += 1;
-        tallies[die4 - 1] += 1;
-        tallies[die5 - 1] += 1;
-        if (tallies[0] == 1 &&
-            tallies[1] == 1 &&
-            tallies[2] == 1 &&
-            tallies[3] == 1 &&
-            tallies[4] == 1)
-            return 15;
-        return 0;
-    }
 
-    public static int largeStraight(int die1, int die2, int die3, int die4, int die5) {
-        int[] tallies;
-        tallies = new int[6];
-        tallies[die1 - 1] += 1;
-        tallies[die2 - 1] += 1;
-        tallies[die3 - 1] += 1;
-        tallies[die4 - 1] += 1;
-        tallies[die5 - 1] += 1;
-        if (tallies[1] == 1 &&
-            tallies[2] == 1 &&
-            tallies[3] == 1 &&
-            tallies[4] == 1
-            && tallies[5] == 1)
-            return 20;
-        return 0;
-    }
+
+
 
     public static int fullHouse(int die1, int die2, int die3, int die4, int die5) {
         int[] tallies;
@@ -136,6 +106,24 @@ public class Yatzy {
         return nOfAKind(4) * 4;
     }
 
+    public int smallStraight() {
+        int[] counts = getCounts();
+        for (int i = 0; i < counts.length-2; i++) {
+            if (counts[i] != 1)
+                return 0;
+        }
+        return 15;
+    }
+
+    public int largeStraight() {
+        int[] counts = getCounts();
+        for (int i = 1; i < counts.length-1; i++) {
+            if (counts[i] != 1)
+                return 0;
+        }
+        return 20;
+    }
+
     private int sum(int[] dice) {
         int total = 0;
         for (int die : dice) {
@@ -143,6 +131,7 @@ public class Yatzy {
         }
         return total;
     }
+
 
     private int[] getCounts() {
         int[] counts = new int[6];
