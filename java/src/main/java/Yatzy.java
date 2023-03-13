@@ -44,7 +44,7 @@ public class Yatzy {
         return count(6);
     }
 
-    public int pair() {
+    public int onePair() {
         return nOfAKind(2) * 2;
     }
 
