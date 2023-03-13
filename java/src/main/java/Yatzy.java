@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Yatzy {
 
     private final int[] dice;
@@ -108,13 +110,8 @@ public class Yatzy {
     }
 
     private int sum(int[] dice) {
-        int total = 0;
-        for (int die : dice) {
-            total += die;
-        }
-        return total;
+        return Arrays.stream(dice).sum();
     }
-
 
     private int[] getCounts() {
         int[] counts = new int[6];
@@ -125,13 +122,9 @@ public class Yatzy {
     }
 
     private int count(int value) {
-        int total = 0;
-        for (int die : dice) {
-            if (die == value) {
-                total = total + die;
-            }
-        }
-        return total;
+        return Arrays.stream(dice)
+            .filter(diceValue -> diceValue == value
+            ).sum();
     }
 
     private int nOfAKind(int n) {
