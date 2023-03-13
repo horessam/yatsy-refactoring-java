@@ -62,7 +62,7 @@ public class YatzyTest {
 
     @Test
     public void one_pair() {
-       // assertEquals(6, new Yatzy(3,4,3,5,6).pair());
+        assertEquals(6, new Yatzy(3,4,3,5,6).pair());
         assertEquals(10, new Yatzy(5,3,3,3,5).pair());
         assertEquals(12, new Yatzy(5,3,6,6,5).pair());
     }
@@ -105,7 +105,8 @@ public class YatzyTest {
 
     @Test
     public void fullHouse() {
-        assertEquals(18, Yatzy.fullHouse(6,2,2,2,6));
-        assertEquals(0, Yatzy.fullHouse(2,3,4,5,6));
+        assertEquals(18, new Yatzy(6,2,2,2,6).fullHouse());
+        assertEquals(0, new Yatzy(2,3,4,5,6).fullHouse());
+        assertEquals(0, new Yatzy(2,2,2,5,6).fullHouse());
     }
 }

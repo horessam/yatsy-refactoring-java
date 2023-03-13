@@ -6,60 +6,6 @@ public class Yatzy {
         dice = new int[]{die1, die2, die3, die4, die5};
     }
 
-
-
-
-
-    public static int fullHouse(int die1, int die2, int die3, int die4, int die5) {
-        int[] tallies;
-        boolean _2 = false;
-        int i;
-        int _2_at = 0;
-        boolean _3 = false;
-        int _3_at = 0;
-
-        tallies = new int[6];
-        tallies[die1 - 1] += 1;
-        tallies[die2 - 1] += 1;
-        tallies[die3 - 1] += 1;
-        tallies[die4 - 1] += 1;
-        tallies[die5 - 1] += 1;
-
-        for (i = 0; i != 6; i += 1)
-            if (tallies[i] == 2) {
-                _2 = true;
-                _2_at = i + 1;
-            }
-
-        for (i = 0; i != 6; i += 1)
-            if (tallies[i] == 3) {
-                _3 = true;
-                _3_at = i + 1;
-            }
-
-        if (_2 && _3)
-            return _2_at * 2 + _3_at * 3;
-        else
-            return 0;
-    }
-
-    public int pair() {
-        return nOfAKind(2) * 2;
-    }
-
-    public int twoPair() {
-        int[] counts = getCounts();
-        int pairs = 0;
-        int score = 0;
-        for (int i = 0; i < counts.length; i++) {
-            if (counts[i] >= 2) {
-                pairs++;
-                score += (i + 1) * 2;
-            }
-        }
-        return pairs == 2 ? score : 0;
-    }
-
     public int chance() {
         return sum(dice);
     }
@@ -98,6 +44,23 @@ public class Yatzy {
         return count(6);
     }
 
+    public int pair() {
+        return nOfAKind(2) * 2;
+    }
+
+    public int twoPair() {
+        int[] counts = getCounts();
+        int pairs = 0;
+        int score = 0;
+        for (int i = 0; i < counts.length; i++) {
+            if (counts[i] >= 2) {
+                pairs++;
+                score += (i + 1) * 2;
+            }
+        }
+        return pairs == 2 ? score : 0;
+    }
+
     public int threeOfAKind() {
         return nOfAKind(3) * 3;
     }
@@ -108,7 +71,7 @@ public class Yatzy {
 
     public int smallStraight() {
         int[] counts = getCounts();
-        for (int i = 0; i < counts.length-2; i++) {
+        for (int i = 0; i < counts.length - 2; i++) {
             if (counts[i] != 1)
                 return 0;
         }
@@ -117,11 +80,31 @@ public class Yatzy {
 
     public int largeStraight() {
         int[] counts = getCounts();
-        for (int i = 1; i < counts.length-1; i++) {
+        for (int i = 1; i < counts.length - 1; i++) {
             if (counts[i] != 1)
                 return 0;
         }
         return 20;
+    }
+
+    public int fullHouse() {
+        int[] counts = getCounts();
+
+        boolean hasTwo = false;
+        boolean hasThree = false;
+        int fullHouse = 0;
+
+        for (int i = 0; i < counts.length; i++) {
+            if (counts[i] == 2) {
+                hasTwo = true;
+                fullHouse += (i + 1) * 2;
+            } else if (counts[i] == 3) {
+                hasThree = true;
+                fullHouse += (i + 1) * 3;
+            }
+        }
+
+        return hasTwo && hasThree ? fullHouse : 0;
     }
 
     private int sum(int[] dice) {
