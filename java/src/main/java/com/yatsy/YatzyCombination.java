@@ -1,8 +1,8 @@
 package com.yatsy;
 
-public class YatsyCombination extends Combination {
+public class YatzyCombination extends Combination {
 
-    public YatsyCombination() {
+    public YatzyCombination() {
     }
 
     public int score(Dice dice) {

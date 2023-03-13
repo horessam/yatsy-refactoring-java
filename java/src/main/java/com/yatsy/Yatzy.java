@@ -13,7 +13,7 @@ public class Yatzy {
     }
 
     public int yatzy() {
-        return new YatsyCombination().score(dice);
+        return new YatzyCombination().score(dice);
     }
 
     public int ones() {
