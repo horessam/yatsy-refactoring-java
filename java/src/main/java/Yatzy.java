@@ -26,57 +26,24 @@ public class Yatzy {
         return 0;
     }
 
-    public static int ones(int die1, int die2, int die3, int die4, int die5) {
-        int sum = 0;
-        if (die1 == 1) sum++;
-        if (die2 == 1) sum++;
-        if (die3 == 1) sum++;
-        if (die4 == 1) sum++;
-        if (die5 == 1)
-            sum++;
-
-        return sum;
+    public int ones() {
+       return count(1);
     }
 
-    public static int twos(int die1, int die2, int die3, int die4, int die5) {
-        int sum = 0;
-        if (die1 == 2) sum += 2;
-        if (die2 == 2) sum += 2;
-        if (die3 == 2) sum += 2;
-        if (die4 == 2) sum += 2;
-        if (die5 == 2) sum += 2;
-        return sum;
+    public int twos() {
+        return count(2);
     }
 
-    public static int threes(int die1, int die2, int die3, int die4, int die5) {
-        int s;
-        s = 0;
-        if (die1 == 3) s += 3;
-        if (die2 == 3) s += 3;
-        if (die3 == 3) s += 3;
-        if (die4 == 3) s += 3;
-        if (die5 == 3) s += 3;
-        return s;
+    public int threes() {
+        return count(3);
     }
 
     public int fours() {
-        int sum;
-        sum = 0;
-        for (int at = 0; at != 5; at++) {
-            if (dice[at] == 4) {
-                sum += 4;
-            }
-        }
-        return sum;
+        return count(4);
     }
 
     public int fives() {
-        int s = 0;
-        int i;
-        for (i = 0; i < dice.length; i++)
-            if (dice[i] == 5)
-                s = s + 5;
-        return s;
+        return count(5);
     }
 
     public int sixes() {
@@ -214,6 +181,16 @@ public class Yatzy {
             return _2_at * 2 + _3_at * 3;
         else
             return 0;
+    }
+
+    private int count(int value) {
+        int total = 0;
+        for (int die : dice) {
+            if (die == value) {
+                total = total + die;
+            }
+        }
+        return total;
     }
 }
 
